@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.AddReviewPage"
+             Title="Report Location"
+             BackgroundColor="#F4F4F6">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+
+            <!-- HEADER -->
+            <Label Text="📋 Report a Location"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   Margin="0,0,0,10"/>
+
+            <!-- LOCATION -->
+            <Frame CornerRadius="12"
+                   Padding="15"
+                   HasShadow="False"
+                   BorderColor="#CCCCCC"
+                   BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="5">
+
+                    <Label Text="📍 Location Name"
+                           FontSize="13"
+                           TextColor="#666666"
+                           FontAttributes="Bold"/>
+
+                    <Entry x:Name="LocationEntry"
+                           Placeholder="e.g., Central Park, MG Road..."
+                           FontSize="15"
+                           TextColor="Black"
+                           ClearButtonVisibility="WhileEditing"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- CATEGORY -->
+            <!-- OLD LOGIC KEPT / NEW UI APPLIED -->
+            <Frame CornerRadius="12"
+                   Padding="15"
+                   HasShadow="False"
+                   BorderColor="#CCCCCC"
+                   BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="5">
+
+                    <Label Text="🏷️ Category"
+                           FontSize="13"
+                           TextColor="#666666"
+                           FontAttributes="Bold"/>
+
+                    <HorizontalStackLayout Spacing="10"
+                                           VerticalOptions="Center">
+
+                        <Label Text="💬"
+                               FontSize="16"
+                               VerticalOptions="Center"/>
+
+                        <!-- IMPORTANT: x:Name kept same -->
+                        <Picker x:Name="CategoryPicker"
+                                Title="Select a category"
+                                TextColor="Black"
+                                TitleColor="#BDBDBD"
+                                FontSize="15"
+                                HorizontalOptions="FillAndExpand"
+                                SelectedIndex="0">
+
+                            <!-- OLD CATEGORY LOGIC PRESERVED -->
+                            <Picker.Items>
+                                <x:String>🚫 Danger</x:String>
+                                <x:String>⚠️ Caution</x:String>
+                                <x:String>✅ Safe</x:String>
+                                <x:String>🍜 Food</x:String>
+                                <x:String>📍 Interesting Spot</x:String>
+                                <x:String>🎉 Festival / Event</x:String>
+                                <x:String>💬 General</x:String>
+                            </Picker.Items>
+
+                        </Picker>
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- SAFETY SLIDER -->
+            <Frame CornerRadius="12"
+                   Padding="15"
+                   HasShadow="False"
+                   BorderColor="#CCCCCC"
+                   BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="🛡️ Safety Level"
+           FontSize="13"
+           TextColor="#666"
+           FontAttributes="Bold"/>
+
+                    <Label Text="1 = Dangerous   •   5 = Safe"
+           FontSize="12"
+           TextColor="#888"/>
+
+                    <Slider x:Name="RatingSlider"
+            Minimum="1"
+            Maximum="5"
+            Value="5"
+            MinimumTrackColor="#D32F2F"
+            MaximumTrackColor="#43A047"
+            ThumbColor="#212121"/>
+
+                    <Label Text="{Binding Source={x:Reference RatingSlider}, Path=Value, StringFormat='Rating: {0:F0} / 5'}"
+           HorizontalOptions="Center"
+           FontAttributes="Bold"
+           FontSize="14"
+           TextColor="Black"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- COMMENT -->
+            <Frame CornerRadius="12"
+                   Padding="15"
+                   HasShadow="False"
+                   BorderColor="#CCCCCC"
+                   BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="5">
+
+                    <Label Text="✏️ Your Comment"
+                           FontSize="13"
+                           TextColor="#666666"
+                           FontAttributes="Bold"/>
+
+                    <!-- OLD x:Name KEPT -->
+                    <Editor x:Name="CommentEditor"
+                            Placeholder="Why is it safe/unsafe? (e.g., well lit, crowded at night)"
+                            HeightRequest="120"
+                            TextColor="Black"
+                            FontSize="15"
+                            BackgroundColor="Transparent"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- SUBMIT BUTTON -->
+            <!-- OLD EVENT KEPT -->
+            <Button Text="📤 Post Review"
+                    Clicked="OnSubmitClicked"
+                    BackgroundColor="#310B1A"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="55"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Margin="0,15,0,0"/>
+
+            <!-- DELETE BUTTON -->
+            <!-- OLD x:Name + EVENT + VISIBILITY KEPT -->
+            <Button x:Name="DeleteButton"
+                    Text="🗑️ Delete Review"
+                    Clicked="OnDeleteClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="#D32F2F"
+                    BorderColor="#D32F2F"
+                    BorderWidth="2"
+                    CornerRadius="12"
+                    HeightRequest="55"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Margin="0,5,0,0"
+                    IsVisible="False"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

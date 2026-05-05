@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.FriendDiariesPage"
+             Title="Travel Stories"
+             BackgroundColor="#F5F5F5">
+
+    <Grid RowDefinitions="Auto, *" Padding="15">
+
+        <!-- Friend Info Header -->
+        <Frame Grid.Row="0" 
+               CornerRadius="12" 
+               Padding="15" 
+               HasShadow="False"
+               BackgroundColor="White"
+               Margin="0,0,0,15">
+            <Grid ColumnDefinitions="60, *" ColumnSpacing="12">
+                <!-- Friend Avatar -->
+                <Border StrokeShape="RoundRectangle 30"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        BackgroundColor="#2F0518"
+                        StrokeThickness="2"
+                        Stroke="#E91E63">
+                    <Label x:Name="FriendInitial"
+                           Text="F"
+                           TextColor="White"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Border>
+
+                <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4">
+                    <Label x:Name="FriendNameLabel" 
+                           Text="Friend's Name" 
+                           FontAttributes="Bold" 
+                           FontSize="18"/>
+                    <Label x:Name="MemoryCountLabel" 
+                           Text="Loading stories..." 
+                           TextColor="Gray" 
+                           FontSize="13"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+
+        <!-- Memories List -->
+        <CollectionView x:Name="MemoriesList" Grid.Row="1">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.EmptyView>
+                <StackLayout Padding="20" VerticalOptions="Center">
+                    <Label Text="🔒" 
+                           FontSize="48" 
+                           HorizontalOptions="Center"/>
+                    <Label Text="No Public Stories" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center"
+                           Margin="0,10,0,5"/>
+                    <Label Text="This traveler hasn't shared any public memories yet." 
+                           TextColor="Gray" 
+                           FontSize="14" 
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="15" Padding="0" HasShadow="True">
+                        <Grid RowDefinitions="200, Auto, Auto" ColumnDefinitions="*">
+
+                            <!-- Cover Image -->
+                            <Image Grid.Row="0" 
+                                   Source="{Binding CoverImage}" 
+                                   Aspect="AspectFill" 
+                                   HeightRequest="200"/>
+
+                            <!-- Public Badge -->
+                            <Border Grid.Row="0" 
+                                    BackgroundColor="#4CAF50" 
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="8,4"
+                                    Margin="10"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Start">
+                                <StackLayout Orientation="Horizontal" Spacing="4">
+                                    <Label Text="🌍" FontSize="12"/>
+                                    <Label Text="Public" 
+                                           TextColor="White" 
+                                           FontSize="11" 
+                                           FontAttributes="Bold"/>
+                                </StackLayout>
+                            </Border>
+
+                            <!-- Title & Description -->
+                            <StackLayout Grid.Row="1" Padding="15,10">
+                                <Label Text="{Binding Title}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="18"/>
+                                <Label Text="{Binding Description}" 
+                                       TextColor="#666" 
+                                       FontSize="14"
+                                       MaxLines="3"
+                                       LineBreakMode="TailTruncation"
+                                       Margin="0,5,0,0"/>
+                            </StackLayout>
+
+                            <!-- Date -->
+                            <Label Grid.Row="2" 
+                                   Text="{Binding StartDate, StringFormat='{0:MMM dd, yyyy}'}" 
+                                   TextColor="Gray" 
+                                   FontSize="12"
+                                   Padding="15,0,0,15"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

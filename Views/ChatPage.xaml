@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.ChatPage"
+             Title="Safarion AI Assistant"
+             BackgroundColor="#F5F5F5">
+
+    <Grid RowDefinitions="*, Auto" Padding="0">
+
+        <!-- CHAT LIST -->
+        <CollectionView x:Name="MessagesList" 
+                        Grid.Row="0" 
+                        Margin="10,10,10,0"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Frame CornerRadius="15" 
+                               Padding="12,8"
+                               BackgroundColor="{Binding BubbleColor}"
+                               HorizontalOptions="{Binding Alignment}"
+                               MaximumWidthRequest="280"
+                               HasShadow="False">
+                            <Label Text="{Binding Text}" 
+                                   TextColor="{Binding TextColor}" 
+                                   FontSize="16"/>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- INPUT AREA -->
+        <Border Grid.Row="1" BackgroundColor="White" StrokeThickness="0" Padding="10"
+                Shadow="{Shadow Brush=Black, Opacity=0.1, Radius=5}">
+
+            <!-- 3 columns now -->
+            <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="10">
+
+                <Entry x:Name="MessageInput"
+                       Grid.Column="0"
+                       Placeholder="Ask about food, festivals, or safety..."
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       ReturnType="Send"
+                       Completed="OnSendClicked"/>
+
+                <!-- 🎤 MIC BUTTON -->
+                <Button Grid.Column="1"
+                        Text="🎤"
+                        FontSize="18"
+                        WidthRequest="45"
+                        HeightRequest="45"
+                        CornerRadius="22"
+                        BackgroundColor="#E0E0E0"
+                        TextColor="Black"
+                        Clicked="OnMicClicked"/>
+
+                <!-- SEND BUTTON -->
+                <Button Grid.Column="2"
+                        Text="➤"
+                        FontSize="20"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        BackgroundColor="#00E676"
+                        TextColor="White"
+                        Clicked="OnSendClicked"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

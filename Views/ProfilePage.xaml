@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Safarion.Models"
+             x:Class="Safarion.Views.ProfilePage"
+             Title="Medical Passport"
+             BackgroundColor="{StaticResource Background}">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="25">
+
+            <Button Text="📖 How to use Safarion" 
+                    BackgroundColor="#2C2C2C" 
+                    TextColor="White" 
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Clicked="OnHelpClicked" />
+
+            <!-- FIXED PROFILE HEADER PART ONLY -->
+
+            <Border StrokeShape="RoundRectangle 16"
+        StrokeThickness="0"
+        BackgroundColor="{StaticResource Primary}"
+        Padding="16">
+
+                <Grid RowDefinitions="Auto, Auto"
+          ColumnDefinitions="80, *, Auto"
+          ColumnSpacing="14">
+
+                    <!-- Profile Photo -->
+                    <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+                HeightRequest="74" WidthRequest="74"
+                StrokeShape="RoundRectangle 37"
+                Stroke="White" StrokeThickness="2">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnViewProfilePhotoTapped"/>
+                        </Border.GestureRecognizers>
+
+                        <Grid>
+                            <Label x:Name="ProfileInitialLabel"
+                       Text="T"
+                       TextColor="White"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                            <Image x:Name="ProfileImage"
+                       Aspect="AspectFill"
+                       IsVisible="False"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Name + Phone -->
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="4">
+                        <Entry x:Name="NameEntry"
+                   Placeholder="Your Name"
+                   TextColor="White"
+                   PlaceholderColor="#E0E0E0"
+                   FontAttributes="Bold"
+                   FontSize="17"/>
+
+                        <Entry x:Name="PhoneEntry"
+                      Keyboard="Telephone"
+                   Placeholder="Phone Number"
+                   TextColor="#F8E8D9"
+                   PlaceholderColor="#BCAAA4"
+                   FontSize="13"/>
+                    </VerticalStackLayout>
+
+                    <!-- Email -->
+                    <Entry Grid.Row="1" Grid.Column="1"
+               x:Name="EmailEntry"
+               Placeholder="Email"
+               TextColor="#F8E8D9"
+               PlaceholderColor="#BCAAA4"
+               FontSize="13"/>
+
+                    <!-- QR Button -->
+                    <Border Grid.Row="0" Grid.Column="2"
+                Grid.RowSpan="2"
+                BackgroundColor="#FFFFFF22"
+                StrokeShape="RoundRectangle 12"
+                HeightRequest="56" WidthRequest="56">
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnShowQrTapped"/>
+                        </Border.GestureRecognizers>
+
+                        <Image Source="qr_icon.png"
+                   HeightRequest="26"
+                   WidthRequest="26"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+
+            <!-- NEW: PHASE 2 LANGUAGE PREFERENCES -->
+            <StackLayout Spacing="10">
+                <Label Text="🌐 App Preferences" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="18"/>
+                <Border StrokeShape="RoundRectangle 10" StrokeThickness="0" BackgroundColor="White" Padding="15">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Preferred Language (For AI &amp; Voice SOS)" TextColor="{StaticResource SecondaryDarkText}" FontSize="12"/>
+                        <Picker x:Name="LanguagePicker" 
+                                Title="Select your language" 
+                                TextColor="{StaticResource PrimaryDarkText}"
+                                SelectedIndexChanged="OnLanguageChanged">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>English</x:String>
+                                    <x:String>Hindi</x:String>
+                                    <x:String>Malayalam</x:String>
+                                    <x:String>Spanish</x:String>
+                                    <x:String>French</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </VerticalStackLayout>
+                </Border>
+            </StackLayout>
+
+
+            <StackLayout Spacing="10">
+                <Label Text="🏥 Medical Information" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="18"/>
+
+                <Border StrokeShape="RoundRectangle 10" StrokeThickness="0" BackgroundColor="White" Padding="15">
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="*, *" RowSpacing="15" ColumnSpacing="15">
+
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="Blood Group" TextColor="{StaticResource SecondaryDarkText}" FontSize="12"/>
+                            <Entry x:Name="BloodEntry" Placeholder="e.g. O+" TextColor="{StaticResource PrimaryDarkText}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                            <Label Text="Date of Birth" TextColor="{StaticResource SecondaryDarkText}" FontSize="12"/>
+                            <Entry x:Name="DobEntry" Placeholder="DD/MM/YYYY" TextColor="{StaticResource PrimaryDarkText}"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                            <Label Text="Height" TextColor="{StaticResource SecondaryDarkText}" FontSize="12"/>
+                            <Entry x:Name="HeightEntry" Placeholder="cm/ft" TextColor="{StaticResource PrimaryDarkText}"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                            <Label Text="Weight" TextColor="{StaticResource SecondaryDarkText}" FontSize="12"/>
+                            <Entry x:Name="WeightEntry" Placeholder="kg/lbs" TextColor="{StaticResource PrimaryDarkText}"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="2" Grid.ColumnSpan="2">
+                            <Label Text="Allergies &amp; Conditions" TextColor="{StaticResource Accent}" FontAttributes="Bold" FontSize="12"/>
+                            <Entry x:Name="AllergiesEntry" Placeholder="List any allergies..." TextColor="{StaticResource PrimaryDarkText}"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Row="3" Grid.ColumnSpan="2">
+                            <Label Text="Current Medications" TextColor="{StaticResource SecondaryDarkText}" FontSize="12"/>
+                            <Entry x:Name="MedsEntry" Placeholder="List medicines..." TextColor="{StaticResource PrimaryDarkText}"/>
+                        </VerticalStackLayout>
+
+                        <Button Grid.Row="4" Grid.ColumnSpan="2" Text="Update Medical Data" Clicked="OnSaveProfileClicked" BackgroundColor="{StaticResource Primary}" TextColor="White" CornerRadius="10"/>
+                    </Grid>
+                </Border>
+            </StackLayout>
+
+            <StackLayout Spacing="10">
+                <Label Text="📞 Emergency Contacts" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="18"/>
+
+                <CollectionView x:Name="ContactsList"
+                HeightRequest="150"
+                VerticalOptions="FillAndExpand">
+                    <CollectionView.EmptyView>
+                        <Label Text="No emergency contacts added yet"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           TextColor="Gray"/>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:EmergencyContact">
+                            <Border StrokeShape="RoundRectangle 10" StrokeThickness="0" BackgroundColor="White" Margin="0,0,0,10" Padding="10">
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkText}"/>
+                                        <Label Text="{Binding Phone}" TextColor="{StaticResource SecondaryDarkText}"/>
+                                        <Label Text="{Binding Relationship}" TextColor="{StaticResource Primary}" FontSize="12"/>
+                                    </StackLayout>
+                                    <Button Grid.Column="1" Text="Remove" BackgroundColor="Transparent" TextColor="Red" FontSize="12" 
+                                            CommandParameter="{Binding .}" Clicked="OnDeleteContactClicked"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Border StrokeShape="RoundRectangle 10" StrokeThickness="1" Stroke="{StaticResource Primary}" StrokeDashArray="4,4" BackgroundColor="Transparent" Padding="15">
+                    <StackLayout Spacing="10">
+                        <Label Text="Add New Contact" HorizontalOptions="Center" TextColor="{StaticResource Primary}"/>
+                        <Entry x:Name="NewContactName" Placeholder="Name" TextColor="{StaticResource PrimaryDarkText}"/>
+                        <Entry x:Name="NewContactPhone" Placeholder="Phone" Keyboard="Telephone" TextColor="{StaticResource PrimaryDarkText}"/>
+                        <Entry x:Name="NewContactRel" Placeholder="Relationship (e.g. Mom)" TextColor="{StaticResource PrimaryDarkText}"/>
+                        <Button Text="+ Add Contact" Clicked="OnAddContactClicked" BackgroundColor="{StaticResource Primary}" TextColor="White" CornerRadius="20"/>
+                    </StackLayout>
+                </Border>
+            </StackLayout>
+
+            <BoxView HeightRequest="50"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

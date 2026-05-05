@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.TravelerChatPage"
+             BackgroundColor="#121212">
+
+    <Grid RowDefinitions="*, Auto" Padding="10">
+
+        <CollectionView x:Name="MessagesList" Grid.Row="0" Margin="0,0,0,10">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border StrokeShape="RoundRectangle 15" 
+                            StrokeThickness="0" 
+                            BackgroundColor="{Binding BackgroundColor}" 
+                            HorizontalOptions="{Binding Alignment}" 
+                            MaximumWidthRequest="280"
+                            Padding="12,10">
+
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="{Binding SenderName}" TextColor="#555555" FontSize="11" FontAttributes="Bold" IsVisible="{Binding IsNotUser}" />
+                            <Label Text="{Binding Text}" TextColor="{Binding TextColor}" FontSize="16"/>
+                            <Label Text="{Binding Time}" TextColor="#666666" FontSize="10" HorizontalOptions="End" Margin="0,4,0,0"/>
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Border Grid.Row="1" StrokeShape="RoundRectangle 25" StrokeThickness="0" BackgroundColor="#2A2A2A" Padding="5">
+            <Grid ColumnDefinitions="*, Auto">
+                <Entry x:Name="MsgEntry" Grid.Column="0" Placeholder="Type a message..." 
+                       TextColor="White" PlaceholderColor="#9E9E9E" BackgroundColor="Transparent" Margin="15,0"/>
+
+                <Button Grid.Column="1" Text="➤" FontSize="20" Clicked="OnSendClicked" 
+                        HeightRequest="42" WidthRequest="42" Margin="5" 
+                        BackgroundColor="#00E676" TextColor="Black" CornerRadius="21" Padding="0"/>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

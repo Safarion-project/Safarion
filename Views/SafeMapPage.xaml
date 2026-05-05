@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="http://schemas.microsoft.com/dotnet/2021/maui/maps"
+             x:Class="Safarion.Views.SafeMapPage"
+             Title="Safe Map"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <Border BackgroundColor="#212121" Padding="15" StrokeThickness="0">
+            <Grid ColumnDefinitions="*, Auto">
+
+                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                    <Label Text="SATELLITE TRACKING"
+                           TextColor="Gray"
+                           FontSize="10"
+                           CharacterSpacing="2"/>
+
+                    <Label
+                           x:Name="CoordsLabel"
+                           Text="Waiting for GPS..."
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           Margin="0,5"/>
+                </VerticalStackLayout>
+
+                <Button Grid.Column="1"
+                        Text="⚠️ TEST RISK"
+                        Clicked="OnSimulateDangerClicked"
+                        BackgroundColor="#B71C1C"
+                        TextColor="White"
+                        FontSize="10"
+                        HeightRequest="35"
+                        CornerRadius="8"
+                        VerticalOptions="Center"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+
+            <maps:Map
+    x:Name="SafetyMap"
+    IsShowingUser="True"/>
+
+            <VerticalStackLayout
+                Spacing="15"
+                Padding="10"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Margin="0,0,10,0">
+
+                <Border BackgroundColor="White" WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" Shadow="{Shadow Brush=Black, Opacity=0.2}">
+                    <Label Text="👮" FontSize="22" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShowPoliceClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border BackgroundColor="White" WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" Shadow="{Shadow Brush=Black, Opacity=0.2}">
+                    <Label Text="🏥" TextColor="Red" FontSize="22" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShowHospitalsClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border BackgroundColor="White" WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" Shadow="{Shadow Brush=Black, Opacity=0.2}">
+                    <Label Text="🍽️" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShowRestaurantsClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border BackgroundColor="#2196F3" WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" Shadow="{Shadow Brush=Black, Opacity=0.2}">
+                    <Label Text="👥" FontSize="22" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnFindTravelersClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border BackgroundColor="#4CAF50" WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" Shadow="{Shadow Brush=Black, Opacity=0.2}">
+                    <Label Text="🏠" FontSize="22" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNavigateHomeClicked"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- NEW: Safety Reviews Button -->
+                <!-- Border BackgroundColor="#FF9800" WidthRequest="50" HeightRequest="50" StrokeShape="RoundRectangle 25" Shadow="{Shadow Brush=Black, Opacity=0.2}">
+                    <Label Text="💬" FontSize="22" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnShowReviewsClicked"/>
+                    </Border.GestureRecognizers>
+                </Border-->
+
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

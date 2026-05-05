@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.SafetyReviewsPage"
+             Title="Safety Reviews"
+             BackgroundColor="#F0F0F0">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- HEADER -->
+        <Border Grid.Row="0"
+                BackgroundColor="#2F0518"
+                StrokeThickness="0"
+                Padding="20,14">
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="🗺️" FontSize="22"/>
+
+                <VerticalStackLayout Spacing="1">
+                    <Label Text="Community Safety Map"
+                           TextColor="White"
+                           FontSize="16"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="Tap map button to open review location"
+                           TextColor="#EFBFCF"
+                           FontSize="11"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Border>
+
+        <!-- LIST -->
+        <CollectionView x:Name="ReviewsList"
+                        Grid.Row="1"
+                        Margin="0,6,1,2">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Margin="8,0"
+                            BackgroundColor="White"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 14"
+                            Padding="0">
+
+                        <Grid ColumnDefinitions="4,*"
+                              RowDefinitions="Auto,Auto,Auto">
+
+                            <!-- LEFT BAR -->
+                            <BoxView Grid.RowSpan="3"
+                                     Grid.Column="0"
+                                     Color="{Binding StatusColor}"/>
+
+                            <!-- TOP -->
+                            <Grid Grid.Column="1"
+                                  Grid.Row="0"
+                                  ColumnDefinitions="44,*,Auto"
+                                  Padding="12,12,12,0">
+
+                                <!-- AVATAR -->
+                                <Border HeightRequest="44"
+                                        WidthRequest="44"
+                                        BackgroundColor="#2F0518"
+                                        StrokeShape="RoundRectangle 22">
+
+                                    <Label Text="{Binding UserInitial}"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           FontSize="18"
+                                           FontAttributes="Bold"/>
+                                </Border>
+
+                                <!-- NAME -->
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Spacing="1">
+
+                                    <Label Text="{Binding UserName}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"/>
+
+                                    <Label Text="{Binding Date,StringFormat='{0:MMM dd, yyyy}'}"
+                                           FontSize="11"
+                                           TextColor="Gray"/>
+                                </VerticalStackLayout>
+
+                                <!-- LOCATION 1 = MAP BUTTON -->
+                                <Button Grid.Column="2"
+                                        Text="📍"
+                                        WidthRequest="42"
+                                        HeightRequest="42"
+                                        CornerRadius="12"
+                                        BackgroundColor="#F5F5F5"
+                                        TextColor="Black"
+                                        Clicked="OnMapClicked"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
+
+                            <!-- STARS -->
+                            <HorizontalStackLayout Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Padding="12,6,12,0"
+                                                   Spacing="8">
+
+                                <Label Text="{Binding StarDisplay}"
+                                       TextColor="{Binding StarColor}"
+                                       FontSize="16"/>
+
+                                <Label Text="{Binding LocationName}"
+                                       FontSize="12"
+                                       TextColor="#666"/>
+                            </HorizontalStackLayout>
+
+                            <!-- BOTTOM -->
+                            <VerticalStackLayout Grid.Row="1"
+                     Grid.Column="1"
+                     Spacing="4"
+                     Padding="12,6,12,0">
+
+                                <!-- Stars -->
+                                <Label Text="{Binding StarDisplay}"
+           TextColor="{Binding StarColor}"
+           FontSize="16"/>
+
+                                
+
+                                <!-- NEW: Reason -->
+                                <Label Text="{Binding Comment, StringFormat='Reason: {0}'}"
+           TextColor="#424242"
+           FontSize="12"
+           LineBreakMode="WordWrap"
+           MaxLines="2"/>
+
+                                <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="6">
+
+                                    <!-- CATEGORY BADGE (smaller size) -->
+                                    <Border BackgroundColor="{Binding StatusColor}"
+            Padding="15,7"
+            StrokeShape="RoundRectangle 12"
+            VerticalOptions="Center">
+
+                                        <Label Text="{Binding CategoryBadge}"
+               TextColor="White"
+               FontSize="10"
+               FontAttributes="Bold"/>
+                                    </Border>
+
+                                    <!-- LIKE -->
+                                    <Button Grid.Column="1"
+            Text="👍🏻"
+            WidthRequest="42"
+            HeightRequest="34"
+            FontSize="12"
+            BackgroundColor="#EEEEEE"
+            TextColor="#333333"
+            CornerRadius="10"
+            Clicked="OnLikeClicked"
+            CommandParameter="{Binding .}"/>
+
+                                    <!-- DISLIKE -->
+                                    <Button Grid.Column="2"
+            Text="👎🏻"
+            WidthRequest="42"
+            HeightRequest="34"
+            FontSize="12"
+            BackgroundColor="#EEEEEE"
+            TextColor="#333333"
+            CornerRadius="10"
+            Clicked="OnDislikeClicked"
+            CommandParameter="{Binding .}"/>
+
+                                    <!-- EDIT -->
+                                    <Button Grid.Column="3"
+            Text="Edit"
+            WidthRequest="55"
+            HeightRequest="34"
+            FontSize="11"
+            BackgroundColor="#E0E0E0"
+            TextColor="#222222"
+            CornerRadius="10"
+            Clicked="OnEditClicked"
+            CommandParameter="{Binding .}"/>
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- ADD -->
+        <Button Grid.Row="2"
+                Text="+ Write a Review"
+                Clicked="OnAddClicked"
+                BackgroundColor="#2F0518"
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Margin="0,10,0,16"/>
+    </Grid>
+</ContentPage>

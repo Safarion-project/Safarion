@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Safarion.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Safarion.Views"
+    Title="Safarion"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarTitleColor="#9D9D9F"
+    Shell.TabBarUnselectedColor="#9D9D9F"
+    Shell.TabBarForegroundColor="#2F0518">
+
+    <TabBar>
+        <ShellContent Title="Home" Icon="home_icon.png" ContentTemplate="{DataTemplate local:DashboardPage}" />
+        <ShellContent Title="AI Chat" Icon="dotnet_bot.svg" ContentTemplate="{DataTemplate local:ChatPage}" />
+        <ShellContent Title="Diary" Icon="diary_icon.png" ContentTemplate="{DataTemplate local:TravelDiaryPage}" />
+        <ShellContent Title="Profile" Icon="user_icon.png" ContentTemplate="{DataTemplate local:ProfilePage}" />
+    </TabBar>
+
+</Shell>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.AddMemoryPage"
+             Title="Memory Details"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="25">
+
+            <Label Text="Photos" FontAttributes="Bold"/>
+            <ScrollView Orientation="Horizontal" HeightRequest="150">
+                <HorizontalStackLayout x:Name="ImagesPanel" Spacing="10">
+                    <Button Text="+" HeightRequest="100" WidthRequest="100" 
+                            Clicked="OnPickPhotosClicked" BackgroundColor="#EEEEEE" TextColor="Black"/>
+                </HorizontalStackLayout>
+            </ScrollView>
+
+            <Entry x:Name="TitleEntry" Placeholder="Spot Name (e.g., Goa Beach)" 
+                   FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+
+            <Grid ColumnDefinitions="*,*">
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                    <Label Text="Start Date" TextColor="Gray" FontSize="12"/>
+
+                    <DatePicker x:Name="StartDatePicker" 
+                                Format="MMM dd, yyyy" 
+                                TextColor="Black" 
+                                BackgroundColor="#F0F0F0"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                    <Label Text="Return Date" TextColor="Gray" FontSize="12"/>
+
+                    <DatePicker x:Name="ReturnDatePicker" 
+                                Format="MMM dd, yyyy" 
+                                TextColor="Black" 
+                                BackgroundColor="#F0F0F0"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <Editor x:Name="DescriptionEditor" Placeholder="Write your experience..." HeightRequest="150" BackgroundColor="#FAFAFA" TextColor="Black" AutoSize="TextChanges"/>
+
+            <!-- Privacy Settings -->
+            <Frame BorderColor="#E0E0E0" CornerRadius="12" Padding="15" HasShadow="False">
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                    <StackLayout Grid.Column="0" Spacing="4">
+                        <Label Text="Share with Friends?" FontAttributes="Bold" FontSize="16"/>
+                        <Label x:Name="PrivacyDescription" 
+                               Text="Private - Only you can see this memory" 
+                               TextColor="Gray" 
+                               FontSize="12"/>
+                    </StackLayout>
+
+                    <Switch x:Name="PrivacySwitch" 
+                            Grid.Column="1"
+                            OnColor="#4CAF50"
+                            ThumbColor="White"
+                            VerticalOptions="Center"
+                            Toggled="OnPrivacyToggled"/>
+
+                    <!-- Location Section -->
+                    <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Margin="0,15,0,0" Spacing="8">
+                        <Label Text="📍 Location (Optional)" FontSize="14" FontAttributes="Bold"/>
+                        <Button x:Name="LocationButton" 
+                                Text="Add Current Location" 
+                                Clicked="OnAddLocationClicked"
+                                BackgroundColor="#2196F3" 
+                                TextColor="White" 
+                                CornerRadius="20"
+                                HeightRequest="40"
+                                FontSize="13"/>
+                        <Label x:Name="LocationLabel" 
+                               Text="" 
+                               TextColor="Gray" 
+                               FontSize="11"
+                               IsVisible="False"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <Button Text="Save Memory" Clicked="OnSaveClicked" BackgroundColor="#00E676" TextColor="White" CornerRadius="25"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

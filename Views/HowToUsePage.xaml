@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.HowToUsePage"
+             Title="How to Use Safarion"
+             BackgroundColor="#121212">
+
+    <ScrollView Padding="15" VerticalScrollBarVisibility="Never">
+
+        <VerticalStackLayout Spacing="20" Padding="0,0,0,40">
+
+            <StackLayout Spacing="10" Margin="0,10,0,10">
+                <Label Text="🌍 Welcome to Safarion" TextColor="White" FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label Text="Stay Safe. Stay Connected. Explore Freely." TextColor="#00E676" FontSize="16" FontAttributes="Bold,Italic" HorizontalTextAlignment="Center"/>
+
+                <Label Text="Safarion is built specifically for solo explorers and backpackers. Whether you are navigating a new city or hiking off the grid, Safarion provides a proactive safety net, intelligent travel advice, and a community of fellow travelers to watch your back." 
+                       TextColor="#B0BEC5" FontSize="14" HorizontalTextAlignment="Center" Margin="0,10,0,0" LineHeight="1.3"/>
+
+                <Label Text="Here is everything you need to know to get started." 
+                       TextColor="White" FontSize="14" HorizontalTextAlignment="Center" FontAttributes="Italic" Margin="0,5,0,0"/>
+            </StackLayout>
+
+            <Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="#1E1E1E" Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="⚙️ 1. Getting Started: The Setup" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    <Label Text="Before you start your journey, let's make sure your safety net is active." TextColor="#B0BEC5" FontSize="14" Margin="0,0,0,5"/>
+
+                    <Label Text="• Complete Your Profile: Add your basic details and a profile picture so other verified travelers in your network can recognize you." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                    <Label Text="• Add Emergency Contacts: Add the phone numbers and emails of your trusted family or friends. If you ever trigger an SOS, these are the people who will instantly receive your live location." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="#1E1E1E" Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🚨 2. Emergency SOS Features" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    <Label Text="In a high-stress situation, you don't have time to navigate complicated menus. Safarion offers three instant ways to trigger an emergency alert:" TextColor="#B0BEC5" FontSize="14" Margin="0,0,0,5" LineHeight="1.2"/>
+
+                    <Label Text="• The Panic Button: Tap the main SOS button on your home screen for immediate activation." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                    <Label Text="• Voice Activation (Hands-Free): If your hands are full or you cannot reach your phone, simply say loudly: &quot;Help me&quot; or &quot;SOS&quot;. Safarion will hear the trigger phrase and activate the alert automatically." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                    <Label Text="• Shake-to-Alert: In a physical emergency, simply grab your phone and shake it vigorously. The app's sensors will detect the erratic movement and instantly dispatch your location." TextColor="White" FontSize="14" LineHeight="1.2"/>
+
+                    <Label Text="🔋 The Offline Safety Net: Losing cell service in the mountains? Don't worry. If you trigger an SOS without an internet connection, Safarion safely stores your alert on the device. The exact second your phone catches a signal, the app will automatically blast the SOS to your contacts in the background." TextColor="#00E676" FontSize="14" FontAttributes="Bold" Margin="0,10,0,0" LineHeight="1.3"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="#1E1E1E" Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🗺️ 3. Safe Tracking &amp; Geofencing" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    <Label Text="Safarion doesn't just react to danger; it helps prevent it." TextColor="#B0BEC5" FontSize="14" Margin="0,0,0,5"/>
+
+                    <Label Text="• Live Tracking: Turn on tracking mode to keep your loved ones updated on your exact route in real-time." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                    <Label Text="• Unsafe Zone Alerts: Keep the app running in the background while you walk. If you accidentally wander into a neighborhood with a high risk or poor safety reviews, Safarion will push an alert to your screen warning you to turn back." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="#1E1E1E" Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🤖 4. Your AI Travel Assistant" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    <Label Text="Need local advice but don't want to switch to Google? Tap the AI Chat tab." TextColor="#B0BEC5" FontSize="14" Margin="0,0,0,5"/>
+
+                    <Label Text="Powered by advanced AI, this acts as your digital travel buddy. Ask it questions like: &quot;What are the safest areas to visit in Paris at night?&quot; or &quot;What is the cultural dress etiquette in Kyoto?&quot; The AI is specially trained to prioritize your safety and give concise, helpful travel advice." TextColor="White" FontSize="14" LineHeight="1.3"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="#1E1E1E" Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="🤝 5. &quot;My Tribe&quot; (Traveler Network)" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                    <Label Text="Solo travel doesn't mean you have to be alone." TextColor="#B0BEC5" FontSize="14" Margin="0,0,0,5"/>
+
+                    <Label Text="• Find Travelers Nearby: Open the My Tribe tab to view a map of other verified Safarion users in your area." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                    <Label Text="• Build Your Network: Send friend requests to travelers you meet. Once accepted, you can securely see each other's active status." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                    <Label Text="• Instant Chat: Tap the 💬 icon next to a friend's name to open a secure, real-time chat. Use this to coordinate meetups, share safe routes, or just check in on each other." TextColor="White" FontSize="14" LineHeight="1.2"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button x:Name="CloseButton" 
+                    Text="Got it, Let's Go!" 
+                    BackgroundColor="#00E676" 
+                    TextColor="#121212" 
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="25"
+                    HeightRequest="55"
+                    Margin="0,20,0,20"
+                    Clicked="OnCloseClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Safarion.Views.FriendRequestsPage"
+             Title="Requests"
+             BackgroundColor="#121212">
+
+    <Grid RowDefinitions="Auto, *">
+
+        <StackLayout Grid.Row="0" Padding="25,20">
+            <Label Text="Pending Requests" TextColor="White" FontSize="24" FontAttributes="Bold"/>
+            <Label Text="Manage who can see your location" TextColor="Gray" FontSize="14"/>
+        </StackLayout>
+
+        <CollectionView x:Name="RequestsList" Grid.Row="1" Margin="15,0">
+
+            <CollectionView.EmptyView>
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="✅" FontSize="50" HorizontalOptions="Center"/>
+                    <Label Text="All caught up!" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="No pending friend requests." TextColor="Gray" FontSize="14"/>
+                </StackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeShape="RoundRectangle 15" StrokeThickness="1" Stroke="#333" BackgroundColor="#1E1E1E" Margin="0,6" Padding="15">
+                        <Grid ColumnDefinitions="50, *, Auto, Auto" ColumnSpacing="12">
+
+                            <Border Grid.Column="0" StrokeShape="RoundRectangle 25" HeightRequest="50" WidthRequest="50" StrokeThickness="0" BackgroundColor="#2A2A2A">
+                                <Label Text="?" TextColor="Gray" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+
+                            <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="{Binding SenderName}" TextColor="White" FontSize="16" FontAttributes="Bold" LineBreakMode="TailTruncation"/>
+                                <Label Text="Wants to connect" TextColor="#B0BEC5" FontSize="12"/>
+                            </StackLayout>
+
+                            <Button Grid.Column="2" Text="✕" 
+                                    BackgroundColor="#2C2C2C" TextColor="#FF5252"
+                                    HeightRequest="40" WidthRequest="40" CornerRadius="20"
+                                    Padding="0" Margin="0,0,5,0"
+                                    Clicked="OnDeclineClicked" CommandParameter="{Binding .}"/>
+
+                            <Button Grid.Column="3" Text="✔" 
+                                    BackgroundColor="#00E676" TextColor="Black"
+                                    HeightRequest="40" WidthRequest="40" CornerRadius="20"
+                                    Padding="0"
+                                    Clicked="OnAcceptClicked" CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
