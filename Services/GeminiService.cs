@@ -7,7 +7,7 @@ namespace Safarion.Services
     public static class GeminiService
     {
         // ⚠️ PASTE YOUR KEY HERE
-        private const string ApiKey = "AIzaSyD0NKHS37MKDQ5Y7pYpj8BUSZGlW2DPGHw";
+        private const string ApiKey = "KEY";
         private const string EndpointUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
 
         // Removed the 'const' so we can dynamically add the language to it!
